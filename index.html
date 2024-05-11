@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passport login Validation Form</title>
+  <style>
+
+    body {
+      font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      background-image: url('passport.jpg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    h1 {
+      text-align: center;
+      text-decoration: underline;
+      font-style: oblique;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin-top: 30px;
+      color: black;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      margin-right: 68%;
+      background-color:transparent;
+      /*background-color: #fff;*/
+      padding: 25px;
+      padding-bottom: 10px;
+      padding-top: 0px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #1c0000;
+      font-size: 20px;
+    }
+
+    input[type="radio"] {
+    border: 10px;
+    width: 3%;
+    height: 1em;
+    margin-right: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: calc(100% - 16px);
+      padding: 10px;
+      border: 1px solid lightpink;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+      font-size: 15px;
+      margin-bottom:1px;
+    }
+
+    button[type="submit"] {
+      width: 97%;
+      padding: 10px;
+      border-color: aqua;
+      background-color: blueviolet;
+      color: white;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #333;
+    }
+    
+    button[type="reset"] {
+      width: 97%;
+      padding: 10px;
+      border-color:whitesmoke;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      border-radius: 3px;
+
+    }
+
+    button[type="reset"]:hover {
+      background-color: #333; 
+    } 
+
+    .error {
+      color: red;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    </style>
+</head>
+<body>
+
+<form id="fr" name="form" method="post" onsubmit="return validateForm()">
+<h1>Passport Login validation</h1>
+
+<label for="name">Name:</label>
+<input type="text" id="pno" onkeydown="return /[a-z]/i.test(event.key)" placeholder="VARSHINE">
+<span id="nameError" class="error"></span><br></br>
+
+<label for="gender">Gender:
+<input type="radio" id="m" name="cr">Male
+<input type="radio" id="f" name="cr">Female
+<input type="radio" id="o" name="cr">Others</label>
+<span id="genderError" class="error"></span><br></br>
+
+<label for="dob">Date Of Birth: <input type="date" id="dob" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> <for="age">Age: <input type="number" min="0" id="age" style="width:9%; height:9%;" ></label>
+<span id="dobError" class="error"></span><br></br>
+<span id="ageError" class="error"></span>
+
+<label for="place">Select your District:</label>
+<select id="place" name="place" >
+<option value="         "></option>
+<option value="cbe">COIMBATORE</option>
+<option value="chn">CHENNAI</option>
+<option value="erode">ERODE</option>
+<option value="madurai">MADURAI</option>
+<option value="namakkal">NAMAKKAL</option>
+<option value="salem">SALEM</option>
+<option value="theni">THENI</option>
+<option value="thirupur">THIRUPUR</option>
+<option value="trichy">TRICHY</option></select>
+
+<span id="placeError" class="error"></span><br></br>
+
+  <label for="email">Email:</label>
+  <input type="text" id="email" placeholder="abc@gmail.com">
+  <span id="emailError" class="error"></span><br></br>
+  
+  <label for="pno">Phone.No:</label>
+  <input type="text" id="pno" onkeypress="return /[0-9]/i.test(event.key)" type="text" maxlength="10" placeholder="88256-79728">
+  <span id="pnoError" class="error"></span><br></br>
+
+  <label for="pwd">Password:</label>
+  <input type="password" id="pwd">
+  <span id="pwdError" class="error"></span><br></br>
+
+  <label for="cpwd">Confirm Password:</label>
+  <input type="password" id="cpwd">
+  <span id="cpwdError" class="error"></span><br></br>
+
+  <label><input type="checkbox" id="chk" style="font-size: 30px;"style="font-size: 80%;">I checked the details</label>
+  <span id="chkError" class="error"></span><br></br>
+
+  <button type="reset" id="btn">Reset</button>
+  <button type="submit" id="btn">Submit</button>
+</form>
+
+<script>
+  function validateForm() {
+    var name = document.getElementById("name").value;
+    var gender = document.getElementById("gender").value;
+    var dob = document.getElementById("dob").value;
+    var dob = document.getElementById("age").value;
+    var place = document.getElementById("place").value;
+    var email = document.getElementById("email").value;
+    var phn = document.getElementById("pno").value;
+    var pwd = document.getElementById("pwd").value;
+    var cpwd = document.getElementById("cpwd").value;
+    var chk = document.getElementById("chk").value;
+    var isValid = true;
+
+    document.getElementById("nameError").textContent = "";
+    document.getElementById("genderError").textContent = "";
+    document.getElementById("dobError").textContent = "";
+    document.getElementById("ageError").textContent = "";
+    document.getElementById("placeError").textContent = "";
+    document.getElementById("emailError").textContent = "";
+    document.getElementById("pnoError").textContent = "";
+    document.getElementById("pwdError").textContent = "";
+    document.getElementById("cpwdError").textContent = "";
+    document.getElementById("chkError").textContent = "";
+
+    if (name === "") {
+      document.getElementById("nameError").textContent = "Name is required";
+      isValid = false;
+    }
+
+    if (gender === "") {
+      document.getElementById("genderError").textContent = "Gender is required";
+      isValid = false;
+    }
+
+    if (dob === "") {
+      document.getElementById("dobError").textContent = "Date Of Birth is required";
+      isValid = false;
+    }
+
+    if (age === "") {
+      document.getElementById("ageError").textContent = "Age is required";
+      isValid = false;
+    }
+
+    if (place === "") {
+      document.getElementById("placeError").textContent = "place is required";
+      isValid = false;
+    }
+
+    if (email === "") {
+      document.getElementById("emailError").textContent = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      document.getElementById("emailError").textContent = "Invalid email format";
+      isValid = false;
+    }
+
+    if (phn === "") {
+      document.getElementById("pnoError").textContent = "phone number is required";
+      isValid = false;
+    }
+
+    if (pwd === "") {
+      document.getElementById("pwdError").textContent = "Password is required";
+      isValid = false;
+    }
+
+    if (cpwd === "") {
+      document.getElementById("cpwdError").textContent = "Confirm Password is required";
+      isValid = false;
+    } else if (pwd !== cpwd) {
+      document.getElementById("cpwdError").textContent = "Passwords do not match";
+      alert("password does not match")
+      isValid = false;
+    } 
+    if(chk === "") {
+        document.getElementById("chkError").textContent = "Please tick";
+        isValid = false;
+    }
+    window.alert("Your response has been recorded.");
+    return true;
+}
+</script>
+
+</body>
+</html>
